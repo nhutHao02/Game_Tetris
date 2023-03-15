@@ -18,7 +18,8 @@ class gameTetris{
                 console.log('up')
                 break;
             case 'ArrowDown':
-                console.log('down')
+                console.log('down');
+                this.block.moveDown();
                 break;
             case 'ArrowLeft':
                 console.log('left')
@@ -63,7 +64,7 @@ class gameTetris{
           // setInterval tự động lặp startGame để vẽ lại khối rơi xuống
         return setInterval(()=>{
             this.block.fallDown();
-        }, 1000);
+        }, 500);
     //     this.block.fallDown();
     //     setTimeout(()=> {
     //         this.startGame()

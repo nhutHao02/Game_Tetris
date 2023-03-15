@@ -36,8 +36,31 @@ class block{
     moveRight(){
         this.col++;
     }
+     // hàm dy chuyển khối xuống dưới
+    moveDown(){
+        if(this.checkFallDown()){
+            this.row++;
+        }
+    }
+    
+    checkFallBottom(){
+        return this.row ===_ROW-1;  // kiem tra row hiện tại có phải là row cuối cùng hay chưa
+    }
+    // kiểm tra khối có thể rơi nữa không
+    checkFallDown(){
+        // && this.game.board.checkNextCell(row+1, col)
+        if(!this.checkFallBottom() && this.game.board.checkNextCell(this.row+1,this.col)){// kiem tra khối đã rơi xuống cuối và có bị chặn bởi khối khác không
+            return true;
+        }else{
+            return false;
+        }
+    }
     // hàm khối sẽ rớt xuống
     fallDown(){
-        this.row++;
+        if(this.checkFallDown()){
+            this.row++;
+        }
     }
+    
+
 }

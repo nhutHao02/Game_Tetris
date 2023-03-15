@@ -2,7 +2,7 @@
 const _WIDTH=400; // chiều rộng màn hình
 const _HEIGHT=720;// chiều dài  màn hình
 const _COL=10;// số lượng cột
-const _ROW=28;// số lượng dòng
+const _ROW=18;// số lượng dòng
 const _SIZE=40;// kích thước 1 ô
 
 // Kích thước ở màn hình next
