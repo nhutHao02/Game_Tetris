@@ -12,8 +12,8 @@ class gameTetris{
     init(){
         // khởi tạo thẻ canvas cho màn hình chính
         this.canvas=document.createElement('canvas');
-        this.canvas.width=600;
-        this.canvas.height=700;
+        this.canvas.width=_WIDTH;
+        this.canvas.height=_HEIGHT;
         this.context = this.canvas.getContext('2d');
         // thêm thẻ canvas vào div mainScreen
         document.getElementById('mainScreen').appendChild(this.canvas);
@@ -21,11 +21,20 @@ class gameTetris{
 
         // khởi tạo thẻ canvas cho màn hình phụ
         this.nScreenCanvas=document.createElement('canvas');
-        this.nScreenCanvas.width=350;
-        this.nScreenCanvas.height=200;
-        this.nScreenContextxt = this.canvas.getContext('2d');
+        this.nScreenCanvas.width=_NEXTWIDTH;
+        this.nScreenCanvas.height=_NEXTHEIGHT;
+        this.nScreenContext = this.nScreenCanvas.getContext('2d');
         // thêm thẻ canvas vào div nextScreen
         document.getElementById('nextScreen').appendChild(this.nScreenCanvas);
+
+        // this.block= new block(this);
+        // this.block.draw();
+        
+        this.block=new block(this,2,3);
+        this.block.drawBlockInMainScreen();
+        this.block.drawBlockInNextScreen();
+       
+      
     }
 
 }

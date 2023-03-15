@@ -5,8 +5,8 @@
     box-sizing: border-box;
 }
 #mainScreen{
-    width: 600px;
-    height: 700px;
+    width: 400px;
+    height: 720px;
     border: 1px solid black;
     float: left;
     margin: 20px 10px 0 90px;
@@ -19,14 +19,15 @@
 
 }
 #nextScreen{
-    width: 100%;
-    height: 200px;
+    width: 210px;
+    height: 210px;
     border: 1px solid black;
+    position: relative;
 }
 
 #infoScreen{
     margin-top: 10px;
-    width: 100%;
+    width: 210px;
     height: 490px;
     border: 1px solid black;
 }

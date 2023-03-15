@@ -1,0 +1,6 @@
+chiều rộng: 400
+chiều cao: 720
+cột: 10
+dòng:18
+kich thước ô vuông: 40
+ 
