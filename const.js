@@ -14,4 +14,4 @@ const _NEXTSIZE=30;// kích thước 1 ô
 
 // board
 const _=null; // biến để xác định ô gạch kh nằm vị trí này
-const t="T"; // vị trí ô gạch trong board
+const T="T"; // vị trí ô gạch trong board
