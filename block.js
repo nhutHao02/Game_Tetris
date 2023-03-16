@@ -1,6 +1,6 @@
 class block{
     constructor(game,col, row, color){
-        console.log('khoi block');
+        // console.log('khoi block');
         this.game=game;
         this.col=col;
         this.row=row;
@@ -28,28 +28,59 @@ class block{
         this.game.nScreenContext.fillStyle=this.color;
         this.game.nScreenContext.fillRect(_x+2,_y+2,_NEXTSIZE-4,_NEXTSIZE-4)
     }
-    // hàm di chuyển khối sang trái
+
+    // hàm kiểm tra vị trí khối hiện hành
+    checkLeft(){
+        return this.col>0;// true nếu vị trí nhỏ hơn tống số cột
+    }
+    // hàm kiểm tra có thể di chuyển khối sang phải không
+    checkMoveLeft(){
+        if(this.checkLeft() && this.game.board.checkCell(this.row,this.col-1)){// kiểm tra trị trí và bên phải có khối khác không
+            return true
+        }else{
+            return false;
+        }
+    }
+    // hàm di chuyển khối sang trái Arrow Left
     moveLeft(){
-        this.col--;
+        if(this.checkMoveLeft()){
+            this.col--;
+        }
     }
-    // hàm dy chuyển khối sang phải
+
+    // hàm kiểm tra vị trí khối hiện hành
+    checkRight(){
+        return this.col< _COL-1;// true nếu vị trí nhỏ hơn tống số cột
+    }
+    // hàm kiểm tra có thể di chuyển khối sang phải không
+    checkMoveRight(){
+        if(this.checkRight() && this.game.board.checkCell(this.row,this.col+1)){// kiểm tra trị trí và bên phải có khối khác không
+            return true
+        }else{
+            return false;
+        }
+    }
+    // hàm dy chuyển khối sang phải Arrow Right
     moveRight(){
-        this.col++;
+        if(this.checkMoveRight()){
+            this.col++;
+        }
+       
     }
-     // hàm dy chuyển khối xuống dưới
+     // hàm dy chuyển khối xuống dưới Arrow Down
     moveDown(){
         if(this.checkFallDown()){
             this.row++;
         }
     }
-    
+    // kiem tra row hiện tại có phải là row cuối cùng hay chua:
     checkFallBottom(){
-        return this.row ===_ROW-1;  // kiem tra row hiện tại có phải là row cuối cùng hay chưa
+        return this.row < _ROW-1;  // true nếu hàng hiện hành nhỏ hơn tổng số hàng
     }
     // kiểm tra khối có thể rơi nữa không
     checkFallDown(){
         // && this.game.board.checkNextCell(row+1, col)
-        if(!this.checkFallBottom() && this.game.board.checkNextCell(this.row+1,this.col)){// kiem tra khối đã rơi xuống cuối và có bị chặn bởi khối khác không
+        if(this.checkFallBottom() && this.game.board.checkCell(this.row+1,this.col)){// kiem tra khối đã rơi xuống cuối và có bị chặn bởi khối khác không
             return true;
         }else{
             return false;

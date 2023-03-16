@@ -9,9 +9,9 @@ class board{
             [_,_,_,_,_,_,_,_,_,_],
             [_,_,_,_,_,_,_,_,_,_],
             [_,_,_,_,_,_,_,_,_,_],
-            [_,_,_,_,_,_,_,_,_,_],
-            [_,_,_,_,_,_,_,_,_,_],
             [_,_,_,_,_,T,_,_,_,_],
+            [_,_,_,_,_,_,_,_,_,_],
+            [_,_,_,_,_,_,_,_,_,_],
             [_,_,_,_,_,_,_,_,_,_],
             [_,_,_,_,_,_,_,_,_,_],
             [_,_,_,_,_,_,_,_,_,_],
@@ -69,10 +69,8 @@ class board{
             }
         }
     }
-    checkNextCell(r, c){
+    checkCell(r, c){
         return this.data[r][c] ===_; // kiểm tra tại cột c dòng r , có gtri _ thì return true, T retuen false;
     }
-    emptyCell(c, r){
-		return this.data[r][c] === _;// tra ve true neu gia tri tai cot c va dong r == null
-	}
+   
 }
