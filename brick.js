@@ -94,7 +94,13 @@ class brick{
 		if(this.checkBrickFall()){
             this.row++;
             this.builBrick();
-        }
+        }else{
+			this.updateBoard();// cập nhật board
+			this.game.board.checkFullBlock(); // check board
+			this.game.createNextBrick();// tạo brick mới
+			this.game.startNextBrick();	// chạy brick
+
+		}
     
 	}
 	 // hàm xu lý xoay khối gạch Arow up
@@ -145,5 +151,13 @@ class brick{
 		}
 		this.builBrick();
     }
+	//cap nhật brick vào board khi chạm đáy
+	updateBoard(){
+		for(let i = 0 ; i< this.blocks.length; i++){// duyệt qua các block trong brick
+			let c = this.blocks[i].col;// lấy ra cột của block thứ i
+			let r = this.blocks[i].row;// lấy ra dòng của block thứ i
+			this.game.board.data[r][c] = T;//gán giá trị bằng hs
+		}
+	}
     
 }

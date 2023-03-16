@@ -63,6 +63,15 @@ class gameTetris{
         this.brick.drawBrickMainScreen();
       
     }
+    // tạo brick mới
+    createNextBrick(){
+		this.nextBrick = new brick(this,3,0);
+		// this.nextBrick.drawBrickToNextScreen();
+	}
+    // xuất hiện brick mới
+	startNextBrick(){
+		this.brick = this.nextBrick;
+	}
     startGame(){
           // setInterval tự động lặp startGame để vẽ lại khối rơi xuống
         return setInterval(()=>{
