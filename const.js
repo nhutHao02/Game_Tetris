@@ -41,8 +41,11 @@ const _BaseBrick = [ // mảng các khối gạch có trong game
     [
         // khoi chu S
         [_,T,T],
-        [T,T]
+        [T,T,_]
     
+        // [T,_],
+        // [T,T],
+        // [_,T]
     ],
     [
          // khoi chu Z

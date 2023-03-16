@@ -97,4 +97,53 @@ class brick{
         }
     
 	}
+	 // hàm xu lý xoay khối gạch Arow up
+	 rotareBrick(){
+		let checkRotare = true;
+		let newBrick = [];
+		// duyệt qua sl row brick (sl oldCol -> sl newRow)
+		for(let c = 0 ; c < this.data[0].length; c++){
+			let rowItemValue = [];
+			// duyệt qua sl col brick (sl oldRow -> sl newCol)		
+			for(let r = this.data.length - 1; r >=0; r--){
+				rowItemValue.push(this.data[r][c]);// lấy từng cột của oldBrick từ dưới lên -> từng hàng của newBrick từ trái qua phải
+			}
+			newBrick.push(rowItemValue);// thêm từng hàng dã xoay vào newbrick
+		}
+		let oldCol = this.col;
+		
+		// kiểm tra xoay sát phải
+		if((this.col + newBrick[0].length) > _COL - 1){// kt newBrick có kích thước vượt quá _COL
+			this.col = _COL - newBrick[0].length;// gán col hiện hành thành _COL trừ kích thước brick
+		}
+		// kiểm tra xoay sát trái
+		if(this.col < 0){// kt newBrick có kích thước nhỏ hơn _COL tối thiểu kh
+			this.col =0;// gán col hiện hành thành vị trí col tối thiểu
+		}
+		// kiểm tra xoay khi brick sat dưới
+		if((this.row + newBrick.length) < _ROW){ // tổng kích thước brick mới có vượt quá _ROW không, vượt thì checkRotare=false kh coay
+			for(let rValue = 0; rValue < newBrick.length; rValue++){// duyệt qua các r của newBrick
+				for(let cValue = 0; cValue < newBrick[0].length; cValue++){// duyệt qua các col của newBrick
+					if(newBrick[rValue][cValue] === T){
+						if(!this.game.board.checkCell(this.row + rValue, this.col + cValue)){
+							checkRotare = false;
+							break;
+						}
+					}
+				}
+			}
+
+		}else{
+			checkRotare = false;
+		}
+		// kiểm tra khối brick có xoay được hay không
+		if(checkRotare){
+			this.data = newBrick;	// gán data bằng brick mới
+			
+		}else{
+			this.col = oldCol; // gán col đã xoay thành col ban đầu
+		}
+		this.builBrick();
+    }
+    
 }

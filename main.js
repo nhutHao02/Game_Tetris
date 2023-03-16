@@ -16,6 +16,7 @@ class gameTetris{
         switch (event.key) {
             case 'ArrowUp':
                 // console.log('up')
+                this.brick.rotareBrick();
                 break;
             case 'ArrowDown':
                 // console.log('down');
