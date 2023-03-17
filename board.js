@@ -31,6 +31,7 @@ class board{
             [_,_,_,_,_,_,_],
             [_,_,_,_,_,_,_]
         ];
+        this.countDeleteRow=0;
     }
 
     resetNextData(){
@@ -102,8 +103,34 @@ class board{
 			if(this.checkFullRow(row)){
 				this.data.splice(row,1); // xóa hàng hiện hành, splice(vị trí bắt đầu, sl xóa)
 				this.data.unshift([_,_,_,_,_,_,_,_,_,_]); // thêm vào đầu data 1 mảng mới
+                this.countDeleteRow++;// đếm score
 				
 			}
 		}
+        this.setLevel();
+        document.getElementById('txt_level').setAttribute('value',this.game.level);
+        // gán điểm mới lên màn hình info
+        document.getElementById('txt_score').setAttribute('value',this.countDeleteRow);
 	}
+    //set level
+    setLevel(){
+        //set level cho game, đặt số điểm x sẽ lên 1 level
+        this.game.level=Math.floor(this.countDeleteRow/3);
+        // console.log(this.game.level);
+        switch (this.game.level) {
+            //level 1 
+            case 1:
+                this.game.resetSpeed(); // reset tốc độ
+                clearInterval(this.game.status);
+                this.game.status = this.game.startGame();
+               // console.log(this.game.speed)
+                break;
+        
+            case 2:
+
+                break;
+        }
+
+    }
+    
 }

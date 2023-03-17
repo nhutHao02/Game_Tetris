@@ -9,7 +9,7 @@
     height: 720px;
     border: 1px solid black;
     float: left;
-    margin: 20px 10px 0 90px;
+    margin: 20px 10px 0 240px;
 }
 #subScreen{
     float: left;
@@ -34,6 +34,7 @@
 #txt_score{
     width: 100px;
     border: 0px solid;
+    
 }
 #txt_level{
     width: 100px;
@@ -56,4 +57,12 @@
     width: 100%;
     font-size: 30px;
     text-align: center;
+}
+#lbScore{
+    margin-left: 10px;
+    font-size: 20px;
+}
+#lbLevel{
+    margin-left: 10px;
+    font-size: 20px;
 }

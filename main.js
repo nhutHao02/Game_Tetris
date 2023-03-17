@@ -8,10 +8,11 @@ class gameTetris{
         this.btnStart=null;
         this.btnStop=null;
         this.status=null;
+        this.speed=1000;
         this.init();
         this.eventListener();
         this.repaint();
-       // this.startGame();
+        this.level=0;
     }
     eventListener(){
         //them su kien keydown
@@ -114,7 +115,7 @@ class gameTetris{
           // setInterval tự động lặp startGame để vẽ lại khối rơi xuống
         return setInterval(()=>{
            this.brick.brickFall();
-        }, 500);
+        }, this.speed);
         // this.brick.brickFall();
         // setTimeout(()=> {
         //     this.startGame()
@@ -134,6 +135,10 @@ class gameTetris{
     clearScreen(){
         this.context.clearRect(0,0,_WIDTH,_HEIGHT);
         this.board.draw();// ve board
+    }
+    // hàm tăng tg lặp lên
+    resetSpeed(){
+        this.speed-=(100*this.level);
     }
 
 }
