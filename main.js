@@ -90,7 +90,7 @@ class gameTetris{
 
         // vẽ brick màn hình chính
         this.brick=new brick(this,3,0);
-        this.brick.drawBrickMainScreen();
+        // this.brick.drawBrickMainScreen();
 
         // vẽ brick màn hình next
         this.nextBrick = new brick(this,3,0);

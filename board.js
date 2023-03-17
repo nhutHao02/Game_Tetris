@@ -97,6 +97,17 @@ class board{
 		}
 		return isFull;
 	}
+    //check khi brick chạm đỉnh
+    checkEndGame(){
+		let endGame = false;
+		for(let c =0; c < this.data[0].length; c++){ // duyệt qua ds cột hàng đầu tiên
+			if(this.data[0][c] === T){
+				endGame = true;
+				break;
+			}
+		}
+		return endGame;
+	}
     // hàm kiểm tra board có hàng nào đầy không
     checkFullBlock(){
 		for(let row = 0; row < _ROW; row++){// duyệt qua tất cả các hàng
@@ -107,7 +118,11 @@ class board{
 				
 			}
 		}
+        if(this.checkEndGame()){
+			clearInterval(this.game.status);// xóa hàm lặp
+		}
         this.setLevel();
+        //gán level mới cho màn hình info
         document.getElementById('txt_level').setAttribute('value',this.game.level);
         // gán điểm mới lên màn hình info
         document.getElementById('txt_score').setAttribute('value',this.countDeleteRow);
@@ -120,9 +135,9 @@ class board{
         switch (this.game.level) {
             //level 1 
             case 1:
-                this.game.resetSpeed(); // reset tốc độ
-                clearInterval(this.game.status);
-                this.game.status = this.game.startGame();
+                this.game.resetSpeed(); // set tốc độ mới
+                clearInterval(this.game.status);// xóa hàm lặp với tốc độ củ
+                this.game.status = this.game.startGame(); // chạy lại hàm lặp vs tốc độ mới
                // console.log(this.game.speed)
                 break;
         
