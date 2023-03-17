@@ -26,8 +26,34 @@
 }
 
 #infoScreen{
-    margin-top: 10px;
+    margin-top: 20px;
     width: 210px;
     height: 490px;
     border: 1px solid black;
+}
+#txt_score{
+    width: 100px;
+    border: 0px solid;
+}
+#txt_level{
+    width: 100px;
+    border: 0px solid;
+   
+}
+#btn_start{
+    width: 50%;
+    margin-left: 25%;
+
+}
+#btn_stop{
+    margin-top: 10%;
+    width: 50%;
+    margin-left: 25%;
+}
+#lbTitle{
+    margin-top: 40%;
+    margin-bottom: 40%;
+    width: 100%;
+    font-size: 30px;
+    text-align: center;
 }

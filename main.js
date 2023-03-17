@@ -5,38 +5,68 @@ class gameTetris{
         this.context = null;
         this.nScreenCanvas = null;
         this.nScreenContext = null;
+        this.btnStart=null;
+        this.btnStop=null;
+        this.status=null;
         this.init();
         this.eventListener();
         this.repaint();
-        this.startGame();
+       // this.startGame();
     }
     eventListener(){
         //them su kien keydown
         document.addEventListener('keydown', (event)=>{
-        switch (event.key) {
-            case 'ArrowUp':
-                // console.log('up')
-                this.brick.rotareBrick();
-                break;
-            case 'ArrowDown':
-                // console.log('down');
-               this.brick.moveDown();
-                break;
-            case 'ArrowLeft':
-                // console.log('left')
-                this.brick.moveLeft();
-                break;
-                    
-            case 'ArrowRight':
-                // console.log('right')
-                this.brick.moveRight();
-                break;
-        }
+            if(this.status!=null){
+                switch (event.key) {
+                    case 'ArrowUp':
+                        // console.log('up')
+                        this.brick.rotareBrick();
+                        break;
+                    case 'ArrowDown':
+                        // console.log('down');
+                       this.brick.moveDown();
+                        break;
+                    case 'ArrowLeft':
+                        // console.log('left')
+                        this.brick.moveLeft();
+                        break;
+                            
+                    case 'ArrowRight':
+                        // console.log('right')
+                        this.brick.moveRight();
+                        break;
+                }
+            }
         });
+        this.btnStart.addEventListener('click', ()=>{
+           // console.log(this.btnStart.getAttribute('status'));
+			let status =this.btnStart.getAttribute('status');
+			switch (status) {
+				case 'start':
+					this.status = this.startGame();
+					this.btnStart.setAttribute('status','pause'); // set attribute status trong thẻ input value thành pause
+					this.btnStart.setAttribute('value','PAUSE');// set attribute value trong thẻ input value thành PAUSE
+					break;
+				case 'pause':
+					clearInterval(this.status);
+					this.status = null;
+					this.btnStart.setAttribute('status','start'); // set attribute status trong thẻ input value thành start
+					this.btnStart.setAttribute('value','RESUME');// set attribute value trong thẻ input value thành RESUME
+                    this.repaint();
+					// statements_def
+					break;
+			}
+		});
+        this.btnStop.addEventListener('click', ()=>{
+            location.reload();
+         });
     }
 
     // hàm khởi tạo
     init(){
+        // lấy input gán vào btnStart
+        this.btnStart = document.getElementById('btn_start');
+        this.btnStop = document.getElementById('btn_stop');
         // khởi tạo thẻ canvas cho màn hình chính
         this.canvas=document.createElement('canvas');
         this.canvas.width=_WIDTH;
@@ -56,16 +86,22 @@ class gameTetris{
         // khoi tao board
         this.board =new board(this);
         this.board.draw();// ve board
-       
-        // this.block=new block(this, 5,3, 'black');
-        // this.block.drawBlockInMainScreen();
+
+        // vẽ brick màn hình chính
         this.brick=new brick(this,3,0);
         this.brick.drawBrickMainScreen();
 
+        // vẽ brick màn hình next
         this.nextBrick = new brick(this,3,0);
         this.nextBrick.drawBrickNextScreen();
+       
     }
-    // tạo brick mới
+    // tạo brick
+    createBrick(){
+        this.brick=new brick(this,3,0);
+        this.brick.drawBrickMainScreen();
+    }
+    // tạo nextBrick
     createNextBrick(){
 		this.nextBrick = new brick(this,3,0);
         this.nextBrick.drawBrickNextScreen();
@@ -79,10 +115,10 @@ class gameTetris{
         return setInterval(()=>{
            this.brick.brickFall();
         }, 500);
-    //     this.block.fallDown();
-    //     setTimeout(()=> {
-    //         this.startGame()
-    //     },1000);
+        // this.brick.brickFall();
+        // setTimeout(()=> {
+        //     this.startGame()
+        // },500);
      }
     // hàm vẽ lại main
     repaint(){

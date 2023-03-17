@@ -32,7 +32,7 @@ class brick{
 		for (let row = 0; row < this.data.length; row++) {
 			for (let col = 0; col < this.data[row].length; col++) {
 				if(this.data[row][col]===T){
-					this.game.board.nextData[row+1][col+1]= T;
+					this.game.board.nextData[row+2][col+1]= T;
 				}
 				
 				
