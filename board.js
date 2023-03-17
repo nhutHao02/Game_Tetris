@@ -32,8 +32,19 @@ class board{
             [_,_,_,_,_,_,_]
         ];
     }
-    //ve boarf
+
+    resetNextData(){
+        for (let row = 0; row < this.nextData.length; row++) {
+            for (let col = 0; col < this.nextData[row].length; col++) {
+                this.nextData[row][col]=_;
+                
+            }
+            
+        }
+    }
+    //ve board
     draw(){
+        
         this.drawBoard();
         this.drawNextBoard();
     }
@@ -53,9 +64,11 @@ class board{
             }
         }
     }
+  
      // vẽ board màn hình next
     drawNextBoard(){
         // duyet qua cac row
+       
         for(let row=0;row<this.nextData.length; row++){
             // duyet qua cac col
             for (let col = 0; col < this.nextData[row].length; col++) {

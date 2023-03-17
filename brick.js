@@ -26,6 +26,19 @@ class brick{
 			}
 		}
 	}
+	//vẽ khối brick lên màn hình next
+	drawBrickNextScreen(){
+		this.game.board.resetNextData();
+		for (let row = 0; row < this.data.length; row++) {
+			for (let col = 0; col < this.data[row].length; col++) {
+				if(this.data[row][col]===T){
+					this.game.board.nextData[row+1][col+1]= T;
+				}
+				
+				
+			}
+		}
+	}
 	// vẽ khối brick lên màn hình chính
 	drawBrickMainScreen(){
 		this.builBrick();
@@ -97,8 +110,9 @@ class brick{
         }else{
 			this.updateBoard();// cập nhật board
 			this.game.board.checkFullBlock(); // check board
-			this.game.createNextBrick();// tạo brick mới
+			
 			this.game.startNextBrick();	// chạy brick
+			this.game.createNextBrick();// tạo brick mới
 
 		}
     

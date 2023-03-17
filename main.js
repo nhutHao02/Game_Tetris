@@ -61,12 +61,14 @@ class gameTetris{
         // this.block.drawBlockInMainScreen();
         this.brick=new brick(this,3,0);
         this.brick.drawBrickMainScreen();
-      
+
+        this.nextBrick = new brick(this,3,0);
+        this.nextBrick.drawBrickNextScreen();
     }
     // tạo brick mới
     createNextBrick(){
 		this.nextBrick = new brick(this,3,0);
-		// this.nextBrick.drawBrickToNextScreen();
+        this.nextBrick.drawBrickNextScreen();
 	}
     // xuất hiện brick mới
 	startNextBrick(){
