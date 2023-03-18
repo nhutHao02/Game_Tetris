@@ -168,21 +168,23 @@ class gameTetris{
     // hàm cập nhật level trong game
     setupLevel(){
         //set level cho game, đặt số điểm x sẽ lên 1 level
-        this.level=Math.floor(this.board.countDeleteRow/3);
-        console.log(this.board.countDeleteRow/3);
+        this.level=Math.floor(this.board.countDeleteRow/1);
+        // console.log(this.board.countDeleteRow/3);
         // console.log(this.game.level);
         if(this.checkSetLevel(this.level)){
             switch (this.level) {
                 //level 1 
                 case 1:
                     this.resetSpeed(); // set tốc độ mới
+                    this.board.addRowRandom();
                     break;
             
                 case 2:
                     this.resetSpeed(); // set tốc độ mới
                     break;
                 case 3:
-                    
+                    this.resetSpeed(); // set tốc độ mới
+                    this.board.addRowRandom();
                     break;
             }
         }

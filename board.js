@@ -110,6 +110,7 @@ class board{
 	}
     // hàm kiểm tra board có hàng nào đầy không
     checkFullBlock(){
+        
 		for(let row = 0; row < _ROW; row++){// duyệt qua tất cả các hàng
 			if(this.checkFullRow(row)){
 				this.data.splice(row,1); // xóa hàng hiện hành, splice(vị trí bắt đầu, sl xóa)
@@ -121,32 +122,29 @@ class board{
         if(this.checkEndGame()){
 			clearInterval(this.game.status);// xóa hàm lặp
 		}
-        // this.setLevel();
+        // set Level cho game
         this.game.setupLevel();
         //gán level mới cho màn hình info
         document.getElementById('txt_level').setAttribute('value',this.game.level);
         // gán điểm mới lên màn hình info
         document.getElementById('txt_score').setAttribute('value',this.countDeleteRow);
 	}
-    //set level
-    setLevel(){
-        //set level cho game, đặt số điểm x sẽ lên 1 level
-        this.game.level=Math.floor(this.countDeleteRow/3);
-        // console.log(this.game.level);
-        switch (this.game.level) {
-            //level 1 
-            case 1:
-                this.game.resetSpeed(); // set tốc độ mới
-                clearInterval(this.game.status);// xóa hàm lặp với tốc độ củ
-                this.game.status = this.game.startGame(); // chạy lại hàm lặp vs tốc độ mới
-               // console.log(this.game.speed)
-                break;
-        
-            case 2:
-
-                break;
+    //hàm thêm 1 hàng ở cuối cùng ngẫu nhiên các block
+    addRowRandom(){
+        let arr=[];
+        for (let index = 0; index < this.data[0].length; index++) {
+            if(Boolean(Math.round(Math.random()))){
+                arr.push(T);
+            }else{
+                arr.push(_);
+            }
+            
         }
-
+        //xóa hàng trên cùng
+        this.data.splice(0,1);
+        // thêm 1 hàng dưới cùng
+        this.data.push(arr);
     }
+   
     
 }
