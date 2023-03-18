@@ -22,7 +22,9 @@ class gameTetris{
                 switch (event.key) {
                     case 'ArrowUp':
                         // console.log('up')
-                        this.brick.rotareBrick();
+                        if(this.level!=5){
+                            this.brick.rotareBrick();
+                        }
                         break;
                     case 'ArrowDown':
                         // console.log('down');
@@ -176,7 +178,6 @@ class gameTetris{
                 //level 1 
                 case 1:
                     this.resetSpeed(); // set tốc độ mới
-                    this.board.addRowRandom();
                     break;
             
                 case 2:
@@ -185,6 +186,14 @@ class gameTetris{
                 case 3:
                     this.resetSpeed(); // set tốc độ mới
                     this.board.addRowRandom();
+                    break;
+                case 4:
+                    this.resetSpeed(); // set tốc độ mới
+                    
+                    break;
+                case 5:
+                    this.resetSpeed(); // set tốc độ mới
+                    
                     break;
             }
         }
