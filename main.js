@@ -13,6 +13,7 @@ class gameTetris{
         this.eventListener();
         this.repaint();
         this.level=0;
+        this.checklevels=[];
     }
     eventListener(){
         //them su kien keydown
@@ -29,12 +30,22 @@ class gameTetris{
                         break;
                     case 'ArrowLeft':
                         // console.log('left')
-                        this.brick.moveLeft();
+                        if(this.level==2){
+                            this.brick.moveRight();
+                        }else{
+                            this.brick.moveLeft();
+                        }
+                       
                         break;
                             
                     case 'ArrowRight':
                         // console.log('right')
-                        this.brick.moveRight();
+                        if(this.level==2){
+                            this.brick.moveLeft();
+                        }else{
+                            this.brick.moveRight();
+                        }
+                        
                         break;
                 }
             }
@@ -59,7 +70,9 @@ class gameTetris{
 			}
 		});
         this.btnStop.addEventListener('click', ()=>{
-            location.reload();
+              location.reload();
+            
+           
          });
     }
 
@@ -138,8 +151,44 @@ class gameTetris{
     }
     // hàm tăng tg lặp lên
     resetSpeed(){
-        this.speed-=(100*this.level);
+        this.speed-=(150*this.level);
+        clearInterval(this.status);// xóa hàm lặp với tốc độ củ
+        this.status = this.startGame(); // chạy lại hàm lặp vs tốc độ mới
+    }
+    // hàm kiểm tra việc setLevel đã đươc set chưa
+    checkSetLevel(lv){
+        let check=true;
+        if(this.checklevels.includes(lv)){
+            check=false;
+        }else{
+            this.checklevels.push(lv);
+        }
+        return check;
+    }
+    // hàm cập nhật level trong game
+    setupLevel(){
+        //set level cho game, đặt số điểm x sẽ lên 1 level
+        this.level=Math.floor(this.board.countDeleteRow/3);
+        console.log(this.board.countDeleteRow/3);
+        // console.log(this.game.level);
+        if(this.checkSetLevel(this.level)){
+            switch (this.level) {
+                //level 1 
+                case 1:
+                    this.resetSpeed(); // set tốc độ mới
+                    break;
+            
+                case 2:
+                    this.resetSpeed(); // set tốc độ mới
+                    break;
+                case 3:
+                    
+                    break;
+            }
+        }
     }
 
 }
 var g =new gameTetris();
+
+

@@ -121,7 +121,8 @@ class board{
         if(this.checkEndGame()){
 			clearInterval(this.game.status);// xóa hàm lặp
 		}
-        this.setLevel();
+        // this.setLevel();
+        this.game.setupLevel();
         //gán level mới cho màn hình info
         document.getElementById('txt_level').setAttribute('value',this.game.level);
         // gán điểm mới lên màn hình info
