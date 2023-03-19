@@ -152,6 +152,26 @@ class board{
         // thêm 1 hàng dưới cùng
         this.data.push(arr);
     }
+    // hàm xóa 1 số khối cho lv 4
+    loseBlock(){
+        let loop=false;
+        for (let row = this.data.length-1; row >=1; row--) {
+            for (let col  = 0; col < this.data[row].length-1; col++) {
+                if(this.data[row][col]===T && this.data[row-1][col]===T && this.data[row][col+1]===T && this.data[row-1][col+1]===T){
+                    this.data[row][col]=_;
+                    this.data[row-1][col]=_;
+                    this.data[row][col+1]=_;
+                    this.data[row-1][col+1]=_;
+                    loop=true;
+                    break;
+                }
+                
+            }
+            if(loop){
+                break;
+            } 
+        }
+    }
    
     
 }

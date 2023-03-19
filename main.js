@@ -15,7 +15,8 @@ class gameTetris{
         //this.repaint();
         this.level=0;
         this.checklevels=[];
-        this.addR=null;
+        this.addLv3=null;
+        this.addLv4=null;
     }
     eventListener(){
         //them su kien keydown
@@ -24,6 +25,7 @@ class gameTetris{
                 switch (event.key) {
                     case 'ArrowUp':
                         // console.log('up')
+                        // event khi level =5
                         if(this.level!=5){
                             this.brick.rotareBrick();
                         }
@@ -34,6 +36,7 @@ class gameTetris{
                         break;
                     case 'ArrowLeft':
                         // console.log('left')
+                        // event khi level =2
                         if(this.level==2){
                             this.brick.moveRight();
                         }else{
@@ -44,6 +47,7 @@ class gameTetris{
                             
                     case 'ArrowRight':
                         // console.log('right')
+                        // event khi level =2
                         if(this.level==2){
                             this.brick.moveLeft();
                         }else{
@@ -59,13 +63,25 @@ class gameTetris{
 			let status =this.btnStart.getAttribute('status');
 			switch (status) {
 				case 'start':
+                    if(this.addLv3!=null){
+                        this.addLv3=this.addRowRD();
+                    }
+                    if(this.addLv4!=null){
+                        this.addLv4=this.loseBlockLv(); 
+                    }
 					this.status = this.startGame();
 					this.btnStart.setAttribute('status','pause'); // set attribute status trong thẻ input value thành pause
 					this.btnStart.setAttribute('value','PAUSE');// set attribute value trong thẻ input value thành PAUSE
 					break;
 				case 'pause':
 					clearInterval(this.status);
-					this.status = null;
+                    this.status = null;
+                    if(this.addLv3!=null){
+                        clearInterval(this.addLv3); 
+                    }
+                    if(this.addLv4!=null){
+                        clearInterval(this.addLv4); 
+                    }
 					this.btnStart.setAttribute('status','start'); // set attribute status trong thẻ input value thành start
 					this.btnStart.setAttribute('value','RESUME');// set attribute value trong thẻ input value thành RESUME
                     this.repaint();
@@ -189,14 +205,22 @@ class gameTetris{
                     break;
                 case 3:
                     this.resetSpeed(); // set tốc độ mới
-                    this.addR=this.addRowRD();
+                    this.addLv3=this.addRowRD();
                     break;
                 case 4:
                     this.resetSpeed(); // set tốc độ mới
-                    clearInterval(addR);
+                    if(this.addLv3!=null){
+                        clearInterval(this.addLv3);
+                        this.addLv3=null;
+                    }
+                    this.addLv4=this.loseBlockLv();
                     break;
                 case 5:
                     this.resetSpeed(); // set tốc độ mới
+                    if(this.addLv4!=null){
+                        clearInterval(this.addLv4);
+                        this.addLv4=null;
+                    }
                     break;
             }
         }
@@ -208,6 +232,13 @@ class gameTetris{
       }, 10000);
      
    }
+   loseBlockLv(){
+    // setInterval tự động lặp startGame để vẽ lại khối rơi xuống
+    return setInterval(()=>{
+        this.board.loseBlock();
+         }, 10000);
+ 
+}
 
 }
 var g =new gameTetris();
