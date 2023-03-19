@@ -66,3 +66,27 @@
     margin-left: 10px;
     font-size: 20px;
 }
+#dialog::backdrop {
+    background: rgba(0, 0, 0, 0.5);
+}
+#dialog{
+    position: absolute;
+    top:40%;
+    left: 40%;
+    text-align: center;
+    font-size: 35px;
+    width: 250px;
+    height: 130px;
+    border: 1px solid gray;
+    border-radius: 15px;
+    padding-top: 10px;
+}
+#dialog button{
+    font-size: 22px; 
+    width: 120px;
+    border: 1px solid gray;
+    border-radius: 5px;
+}
+
+
+  

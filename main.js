@@ -11,9 +11,11 @@ class gameTetris{
         this.speed=1000;
         this.init();
         this.eventListener();
-        this.repaint();
+        this.reP=null;
+        //this.repaint();
         this.level=0;
         this.checklevels=[];
+        this.addR=null;
     }
     eventListener(){
         //them su kien keydown
@@ -111,6 +113,7 @@ class gameTetris{
         this.nextBrick = new brick(this,3,0);
         this.nextBrick.drawBrickNextScreen();
        
+        this.reP=this.repaint();
     }
     // tạo brick
     createBrick(){
@@ -173,6 +176,7 @@ class gameTetris{
         this.level=Math.floor(this.board.countDeleteRow/1);
         // console.log(this.board.countDeleteRow/3);
         // console.log(this.game.level);
+        
         if(this.checkSetLevel(this.level)){
             switch (this.level) {
                 //level 1 
@@ -185,19 +189,25 @@ class gameTetris{
                     break;
                 case 3:
                     this.resetSpeed(); // set tốc độ mới
-                    this.board.addRowRandom();
+                    this.addR=this.addRowRD();
                     break;
                 case 4:
                     this.resetSpeed(); // set tốc độ mới
-                    
+                    clearInterval(addR);
                     break;
                 case 5:
                     this.resetSpeed(); // set tốc độ mới
-                    
                     break;
             }
         }
     }
+    addRowRD(){
+        // setInterval tự động lặp startGame để vẽ lại khối rơi xuống
+      return setInterval(()=>{
+        this.board.addRowRandom();
+      }, 10000);
+     
+   }
 
 }
 var g =new gameTetris();

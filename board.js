@@ -120,7 +120,14 @@ class board{
 			}
 		}
         if(this.checkEndGame()){
-			clearInterval(this.game.status);// xóa hàm lặp
+            clearTimeout(this.game.reP);//xóa hàm lặp vẽ brick
+			clearInterval(this.game.status);// xóa hàm lặp rơi brick
+            let dialog= document.querySelector('dialog');
+            dialog.showModal(); // hiển thị game over
+            var playAgain= document.getElementById('close');
+            playAgain.addEventListener("click", () => { // thêm sự kiện vào nút close
+                dialog.open=false;  
+              });
 		}
         // set Level cho game
         this.game.setupLevel();
