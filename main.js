@@ -75,7 +75,7 @@ class gameTetris{
 					break;
 				case 'pause':
 					clearInterval(this.status);
-                    this.status = null;
+                    //this.status = null;
                     if(this.addLv3!=null){
                         clearInterval(this.addLv3); 
                     }
@@ -90,9 +90,7 @@ class gameTetris{
 			}
 		});
         this.btnStop.addEventListener('click', ()=>{
-              location.reload();
-            
-           
+            this.stopGame();
          });
     }
 
@@ -145,6 +143,33 @@ class gameTetris{
 	startNextBrick(){
 		this.brick = this.nextBrick;
 	}
+    stopGame(){
+        if(this.status!=null){
+            clearInterval(this.status);// Xóa hàm set cho brick rơi
+            this.status = null;
+        }
+        if(this.addLv3!=null){
+            clearInterval(this.addLv3); 
+            this.addLv3=null;
+        }
+        if(this.addLv4!=null){
+            clearInterval(this.addLv4); 
+            this.addLv4=null;
+        }
+        this.level=0;
+        this.board.countDeleteRow=0;
+         //gán level mới cho màn hình info
+         document.getElementById('txt_level').setAttribute('value',this.level);
+         // gán điểm mới lên màn hình info
+         document.getElementById('txt_score').setAttribute('value',this.board.countDeleteRow);
+        this.speed=1000;
+        this.board.resetData(); // reset lại data mainScreen
+        this.board.resetNextData();// rết lại nextData màn hình nextScreen
+        this.createBrick(); // vẽ brick màn hình chính
+        this.createNextBrick(); // vẽ brick màn hình chính
+        this.btnStart.setAttribute('status','start'); // set attribute status trong thẻ input value thành start
+        this.btnStart.setAttribute('value','START');// set attribute value trong thẻ input value thành START
+    }
     startGame(){
           // setInterval tự động lặp startGame để vẽ lại khối rơi xuống
         return setInterval(()=>{

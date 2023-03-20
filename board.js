@@ -43,6 +43,15 @@ class board{
             
         }
     }
+    resetData(){
+        for (let row = 0; row < this.data.length; row++) {
+            for (let col = 0; col < this.data[row].length; col++) {
+                this.data[row][col]=_;
+                
+            }
+            
+        }
+    }
     //ve board
     draw(){
         
@@ -127,6 +136,8 @@ class board{
             var playAgain= document.getElementById('close');
             playAgain.addEventListener("click", () => { // thêm sự kiện vào nút close
                 dialog.open=false;  
+                this.game.stopGame();
+
               });
 		}
         // set Level cho game
